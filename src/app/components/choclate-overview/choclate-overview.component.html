@@ -1,0 +1,53 @@
+<div
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="space-around center"
+  fxLayoutGap="25px"
+  class="bg-image"
+>
+  <mat-card
+    *ngFor="let choclate of transformedChoclateData"
+    fxFlex="calc(33%-50px)"
+    fxFlex.sm="calc(50%-25px)"
+  >
+    <div (click)="navigateToDetails(choclate.choclateDetails.id)">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ choclate.choclateDetails.name }}</mat-card-title>
+        <mat-card-subtitle>{{
+          choclate.choclateDetails.brand
+        }}</mat-card-subtitle>
+      </mat-card-header>
+      <div>
+        <img
+          mat-card-image
+          [src]="sanitizeUrl(choclate.choclateDetails.image)"
+          alt="Photo of {{ choclate.choclateDetails.brand }}"
+        />
+      </div>
+      <mat-card-content>
+        <p>
+          Lowest price per 100g:
+          <span class="lowest-price"
+            >{{ choclate.lowestPrice | number: "1.2-2" }}
+            {{ choclate.choclateDetails.currency }}</span
+          >
+        </p>
+        <p>
+          Average price per 100g:
+          <span
+            >{{ choclate.averagePrice | number: "1.2-2" }}
+            {{ choclate.choclateDetails.currency }}</span
+          >
+        </p>
+      </mat-card-content>
+    </div>
+
+    <div *ngIf="choclate.cheapestOffer">
+      <span class="offer">Cheapest Offer: </span>
+      <a [href]="sanitizeUrl(choclate.cheapestOffer)">{{
+        choclate.cheapestOffer
+      }}</a>
+    </div>
+  </mat-card>
+</div>

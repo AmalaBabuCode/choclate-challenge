@@ -1,0 +1,31 @@
+<div>
+  <div class="add-title">
+    <h2 class="primary">Edit Details</h2>
+  </div>
+  <div>
+    <form [formGroup]="editDetailsForm">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name" required />
+        <mat-error
+          *ngIf="editDetailsForm.controls['name'].hasError('required')"
+        >
+          Please enter name
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Brand</mat-label>
+        <input matInput placeholder="Brand" formControlName="brand" required />
+        <mat-error
+          *ngIf="editDetailsForm.controls['brand'].hasError('required')"
+        >
+          Please enter brand
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close color="primary">Cancel</button>
+    <button mat-button cdkFocusInitial color="primary" (click)="savedetails()">Save</button>
+  </div>
+</div>
